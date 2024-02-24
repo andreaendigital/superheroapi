@@ -29,7 +29,9 @@ $(document).ready(function () {
 
                 // Llamar a una función para procesar la respuesta
                 mostrarCard(response);
-
+                //Llamar a una función para procesar gráfico
+                mostrarGrafico(response.powerstats);
+                console.log(response.powerstats);
                 // datosApi.forEach(element => {
                 // $('.resultado').append(`<p>${element.id}-${element.name}-${element.username}- ${element.email}-${element.phone}</p>`);
                 // })
@@ -45,6 +47,52 @@ $(document).ready(function () {
 
     }
 
+    function mostrarGrafico(dataPoints) {
+        // crear objeto options como requiere la libreria para graficar
+        let dataPoints
+        let options = {
+            animationEnabled: true,
+            theme: "light2",
+            title: { text: "Super Powers" },
+            data: [{
+                type: "pie",
+                startAngle: 45,
+                showInLegend: "true",
+                legendText: "{label}",
+                indexLabel: "{label} ({y})",
+                yValueFormatString: "#,##0.#" % "",
+                dataPoints: dataPoints  // propiedad tomara los datos del arreglo
+            }
+            ]
+        };
+        // var options = {
+        //     title: {
+        //         text: "Website Traffic Source"
+        //     },
+        //     data: [{
+        //         type: "pie",
+        //         startAngle: 45,
+        //         showInLegend: "true",
+        //         legendText: "{label}",
+        //         indexLabel: "{label} ({y})",
+        //         yValueFormatString: "#,##0.#" % "",
+        //         dataPoints: [
+        //             { label: "Organic", y: 36 },
+        //             { label: "Email Marketing", y: 31 },
+        //             { label: "Referrals", y: 7 },
+        //             { label: "Twitter", y: 7 },
+        //             { label: "Facebook", y: 6 },
+        //             { label: "Google", y: 10 },
+        //             { label: "Others", y: 3 }
+        //         ]
+        //     }]
+        // };
+        $("#Grafico").CanvasJSChart(options);
+
+    }
+
+
+}
     // Función para procesar la respuesta de la API
     // function procesarRespuesta(response) {
     // Aquí puedes acceder a cada propiedad del objeto de respuesta
