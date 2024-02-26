@@ -1,16 +1,3 @@
-//buscar un superheroe
-//info de la api  https://www.superheroapi.com
-//rquiere un token
-//crear formulario de busqueda en el html
-//al realizar un click sobre el botón de busqueda
-//capturar  info - evento sdel dom con jquery
-//validar  expresión regular : que no tenga letras. sólo números
-// mostrar la info dinamicamente mediante jquery y canvajs grafico pastel / y cards de bootstrap
-//consultar la api por ajax consintais de jquery
-//usar ciclos y metodo para arreglos u objetos que permitan recorrer, ordenar y mostrar la información.
-//implementar estructuras condicionales para generar alertas cuando existan errores en la búsqueda.
-
-
 $(document).ready(function () {
 
     //función al hacer click en el botón
@@ -29,12 +16,12 @@ $(document).ready(function () {
 
                 // Llamar a una función para procesar la respuesta
                 mostrarCard(response);
+
                 //Llamar a una función para procesar gráfico
                 mostrarGrafico(response.powerstats);
+
                 console.log(response.powerstats);
-                // datosApi.forEach(element => {
-                // $('.resultado').append(`<p>${element.id}-${element.name}-${element.username}- ${element.email}-${element.phone}</p>`);
-                // })
+
             },
 
             error: function (error) {
