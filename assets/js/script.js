@@ -47,62 +47,66 @@ $(document).ready(function () {
 
     }
 
-    function mostrarGrafico(dataPoints) {
+    function mostrarGrafico(datosGrafico) {
         // crear objeto options como requiere la libreria para graficar
-        let dataPoints
-        let options = {
-            animationEnabled: true,
-            theme: "light2",
-            title: { text: "Super Powers" },
-            data: [{
-                type: "pie",
-                startAngle: 45,
-                showInLegend: "true",
-                legendText: "{label}",
-                indexLabel: "{label} ({y})",
-                yValueFormatString: "#,##0.#" % "",
-                dataPoints: dataPoints  // propiedad tomara los datos del arreglo
+
+        let dataPoints = [];
+        let hayValorNulo = false; //variable para verificar si hay valores nulos
+
+        for (const dato in datosGrafico) {
+            if (datosGrafico[dato] === null || datosGrafico[dato] === "null") {
+                hayValorNulo = true;  //actualiza la variable
+                // console.log(`No se tiene información para ${dato}.`);
+                // alert("no hay datos sobre los poderes");
             }
-            ]
-        };
-        // var options = {
-        //     title: {
-        //         text: "Website Traffic Source"
-        //     },
-        //     data: [{
-        //         type: "pie",
-        //         startAngle: 45,
-        //         showInLegend: "true",
-        //         legendText: "{label}",
-        //         indexLabel: "{label} ({y})",
-        //         yValueFormatString: "#,##0.#" % "",
-        //         dataPoints: [
-        //             { label: "Organic", y: 36 },
-        //             { label: "Email Marketing", y: 31 },
-        //             { label: "Referrals", y: 7 },
-        //             { label: "Twitter", y: 7 },
-        //             { label: "Facebook", y: 6 },
-        //             { label: "Google", y: 10 },
-        //             { label: "Others", y: 3 }
-        //         ]
-        //     }]
-        // };
-        $("#Grafico").CanvasJSChart(options);
+            else {
+
+                dataPoints.push(
+                    {
+                        label: dato, // esta seria la propiedad, cada poder
+                        y: (datosGrafico[dato])// este serie el value
+                    });
+            };
+        }
+
+        // Si hay un valor nulo, muestra el mensaje apropiado
+        if (hayValorNulo) {
+            console.log("Se encontraron datos nulos en los powerstats.");
+            // Puedes mostrar un mensaje de alerta si lo prefieres:
+            // alert("Se encontraron datos nulos en los powerstats.");
+            $("#Grafico").html("<h2> No existe información suficiente sobre sus poderes o varios poderes no tienen información detallada </h2>");
+
+        } else {
+            console.log("No se encontraron datos nulos en los powerstats.");
+            // alert("varios de los poderes no tienen información detallada");
+
+            let options = {
+                animationEnabled: true,
+                theme: "light2",
+                title: { text: "Super Powers" },
+                data: [{
+                    type: "pie",
+                    startAngle: 45,
+                    showInLegend: "true",
+                    legendText: "{label}",
+                    indexLabel: "{label} ({y})",
+                    yValueFormatString: "#,##0.#" % "",
+                    dataPoints: dataPoints  // propiedad tomara los datos del arreglo
+                }]
+            };
+            $("#Grafico").CanvasJSChart(options);
+
+        }
+
+        console.log("Data points:", dataPoints); // Verificar los data points antes de mostrar el gráfico
+
+
+
+
+        // $("#Grafico").CanvasJSChart(options);
 
     }
 
-
-}
-    // Función para procesar la respuesta de la API
-    // function procesarRespuesta(response) {
-    // Aquí puedes acceder a cada propiedad del objeto de respuesta
-    // var nombre = response.name;
-    // var descripcion = response.description;
-    // Acceder a más propiedades según la estructura de la respuesta
-
-    // Llamar a la función para mostrar la tarjeta con la información obtenida
-    // mostrarCard(nombre, descripcion);
-    // }
 
 
     // Función para mostrar la tarjeta con la información del superhéroe
