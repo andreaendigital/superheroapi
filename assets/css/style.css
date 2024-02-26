@@ -1,13 +1,8 @@
 body {
   margin: 0;
   padding: 0;
+  font-family: "Noto Sans", sans-serif;
 }
-
-/* .ruslan-display-regular {
-  font-family: "Ruslan Display", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-} */
 
 header {
   background-image: url("../img/banner1.jpg");
@@ -18,7 +13,6 @@ header {
 }
 
 .titulo {
-  /* padding-top: 10%; */
   font-family: "Ruslan Display", sans-serif;
   font-size: 55px;
 }

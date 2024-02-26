@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- GOOGLE FONTS  -->
     <link
       href="https://fonts.googleapis.com/css2?family=Anta&family=Noto+Sans:wght@300;400;600&family=Ruslan+Display&display=swap"
       rel="stylesheet"
     />
-
     <!-- BOOTSTRAP  -->
     <link
       rel="stylesheet"
@@ -17,11 +17,13 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <!-- LINK A CSS  -->
     <link rel="stylesheet" href="./assets/css/style.css" />
-    <title>SuperHeroes</title>
+    <title>SuperHeroes DataBase</title>
   </head>
 
   <body>
+    <!-- Header  -->
     <header class="text-center">
       <div class="titulo text-white">
         <p class="m-0 p-0 1h-1">Encuentra tu</p>
@@ -29,13 +31,16 @@
       </div>
 
       <!-- formulario basico en html  -->
-      <form id="formulario">
-        <label>Ingrese Número de Superheroe a buscar:</label><br />
-        <input type="text" id="idSuperHeroe" /><br />
+      <form
+        id="formulario"
+        class="d-flex flex-column justify-content-center align-items-center"
+      >
+        <label>Ingrese Número de Superheroe a buscar:</label>
+        <input type="text" id="idSuperHeroe" class="col-3" />
         <input
           type="submit"
           value="Buscar"
-          class="mt-3 btn btn-warning btn-lg"
+          class="col-2 mt-3 btn btn-warning mb-5"
         />
       </form>
     </header>

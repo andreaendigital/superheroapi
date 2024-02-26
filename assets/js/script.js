@@ -43,8 +43,7 @@ $(document).ready(function () {
         for (const dato in datosGrafico) {
             if (datosGrafico[dato] === null || datosGrafico[dato] === "null") {
                 hayValorNulo = true;  //actualiza la variable
-                // console.log(`No se tiene información para ${dato}.`);
-                // alert("no hay datos sobre los poderes");
+
             }
             else {
 
@@ -59,13 +58,13 @@ $(document).ready(function () {
         // Si hay un valor nulo, muestra el mensaje apropiado
         if (hayValorNulo) {
             console.log("Se encontraron datos nulos en los powerstats.");
-            // Puedes mostrar un mensaje de alerta si lo prefieres:
+            // Imprime un mensaje indicando falta de datos:
             // alert("Se encontraron datos nulos en los powerstats.");
             $("#Grafico").html("<h2> No existe información suficiente sobre sus poderes o varios poderes no tienen información detallada </h2>");
 
         } else {
             console.log("No se encontraron datos nulos en los powerstats.");
-            // alert("varios de los poderes no tienen información detallada");
+
 
             let options = {
                 animationEnabled: true,
@@ -91,6 +90,7 @@ $(document).ready(function () {
 
 
         // $("#Grafico").CanvasJSChart(options);
+        //lo cambié arriba dentro del if, else.
 
     }
 
@@ -100,48 +100,31 @@ $(document).ready(function () {
     function mostrarCard(superheroe) {
         // Construir la estructura de la tarjeta con los datos del superhéroe
         let cardHtml =
-            `<div class="card mb-3" style="max-height: 300px">   
-            <div class="row g-0">
-                <div class="col">
-                <img src="${superheroe.image.url}"  class="img-fluid rounded-start" alt="${superheroe.name}" style="max-height: 300px"> 
+            `<div class="card mb-3 mw-100 d-flex " >   
+            <div class="row g-0" d-flex>
+                <div class="col-3">
+                <img src="${superheroe.image.url}"  class="img-fluid mw-100 position-absolute top-50 start-0 translate-middle-y" alt="${superheroe.name}" > 
                 </div>
-                    <div class=" d-flex flex-column justify-content-start">
+                    <div class="col-9 d-flex flex-column justify-content-start">
                         <div class="card-body">
-                            <h5 class="card-title"><strong>Nombre:</strong>${superheroe.name}</h5>
-                            <p class="card-text"><strong>Altura:</strong> ${superheroe.appearance.height[0]}</p>
-                            <p class="card-text"><strong>Peso:</strong> ${superheroe.appearance.weight[0]}</p>
-                            <p class="card-text"><strong>Ocupación:</strong> ${superheroe.work.occupation}</p>
-                            <p class="card-text"><strong>Conexiones:</strong> ${superheroe.connections['group-affiliation']}</p>
-                            <p class="card-text"><strong>Alianzas:</strong> ${superheroe.biography.aliases}</p>
-                            <p class="card-text"><strong>Primera aparición:</strong> ${superheroe.biography['first-appearance']}</p>
-                            <p class="card-text"><strong>Publicado por:</strong> ${superheroe.biography.publisher}</p>
-
-
+                            <h5 class="card-title"><strong>Nombre: </strong>${superheroe.name}</h5>
+                            <p class="card-text"><strong>Altura: </strong> ${superheroe.appearance.height[0]}</p>
+                            <p class="card-text"><strong>Peso: </strong> ${superheroe.appearance.weight[0]}</p>
+                            <p class="card-text"><strong>Ocupación: </strong> ${superheroe.work.occupation}</p>
+                            <p class="card-text"><strong>Conexiones: </strong> ${superheroe.connections['group-affiliation']}</p>
+                            <p class="card-text"><strong>Alianzas: </strong> ${superheroe.biography.aliases}</p>
+                            <p class="card-text"><strong>Primera aparición: </strong> ${superheroe.biography['first-appearance']}</p>
+                            <p class="card-text"><strong>Publicado por: </strong> ${superheroe.biography.publisher}</p>
                         </div> 
                     </div>
             </div>
         </div>`;
 
-        // Recorrer y mostrar las propiedades del superhéroe
-        // for (var prop in superheroe) {
-        // Saltar la propiedad image, ya que ya la hemos mostrado en la imagen
-        // if (prop === "image") continue;
 
-        // Mostrar la propiedad actual en la tarjeta
-        // cardHtml += `<p class="card-text"><strong>${prop}:</strong> ${superheroe[prop]}</p>`;
-        // }
-
-        // Cerrar la estructura de la tarjeta
-        // cardHtml += `</div></div>  `;
 
         // Mostrar la tarjeta en el contenedor
         $("#cardContainer").html(cardHtml);
     }
-
-
-
-
-
 
 
 
@@ -183,11 +166,3 @@ $(document).ready(function () {
 
 });
 
-
-// varlugar = document.querySelector(".lugar").value;
-// var permitido = /[a-zA-Z]/gim;
-// if (lugar.match(permitido)) {
-//     alert("El texto ingresado es permitido");
-// } else {
-//     alert("El texto ingresado no es permitido");
-// };
