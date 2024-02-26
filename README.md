@@ -1,1 +1,1 @@
-Proyecto para validar conocimientos básicos en JS. Conexión a API por Ajax, uso de DOM, JQuery, arreglos, objetos, métodos y ciclos. Validaciones de información ingresada por el usuario y condicionales para generar alertas por errores.
+Proyecto para validar conocimientos básicos en JS. Conexión a API por Ajax, uso de DOM, JQuery, arreglos, objetos, métodos y ciclos. Validaciones de información ingresada por el usuario y condicionales para generar alertas por errores. No responsive.
