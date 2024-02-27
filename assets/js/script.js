@@ -34,38 +34,33 @@ $(document).ready(function () {
 
     }
 
+
     function mostrarGrafico(datosGrafico) {
-        // crear objeto options como requiere la libreria para graficar
-
         let dataPoints = [];
-        let hayValorNulo = false; //variable para verificar si hay valores nulos
 
+        // Iterar sobre las propiedades de datosGrafico
         for (const dato in datosGrafico) {
-            if (datosGrafico[dato] === null || datosGrafico[dato] === "null") {
-                hayValorNulo = true;  //actualiza la variable
+            // Convertir el valor a un número, si es "null" lo convierte a 0
+            let valor = (datosGrafico[dato] === "null") ? 0 : Number(datosGrafico[dato]);
 
-            }
-            else {
-
-                dataPoints.push(
-                    {
-                        label: dato, // esta seria la propiedad, cada poder
-                        y: (datosGrafico[dato])// este serie el value
-                    });
-            };
+            // Agregar el punto de datos al arreglo
+            dataPoints.push({
+                label: dato,
+                y: valor
+            });
         }
 
-        // Si hay un valor nulo, muestra el mensaje apropiado
-        if (hayValorNulo) {
-            console.log("Se encontraron datos nulos en los powerstats.");
-            // Imprime un mensaje indicando falta de datos:
-            // alert("Se encontraron datos nulos en los powerstats.");
+        //función de flecha y el método every() para verificar si todos los valores en dataPoints son iguales a 0.
+        let todosCeros = dataPoints.every(punto => punto.y === 0);
+
+        // Si todos los valores son 0, imprimir un mensaje en la pantalla
+        if (todosCeros) {
+            console.log("Los poderes no tienen información detallada");
             $("#Grafico").html("<h2> No existe información suficiente sobre sus poderes o varios poderes no tienen información detallada </h2>");
 
+
         } else {
-            console.log("No se encontraron datos nulos en los powerstats.");
-
-
+            // Si hay datos suficientes, generar el gráfico
             let options = {
                 animationEnabled: true,
                 theme: "light2",
@@ -73,26 +68,20 @@ $(document).ready(function () {
                 data: [{
                     type: "pie",
                     startAngle: 45,
-                    showInLegend: "true",
+                    showInLegend: true,
                     legendText: "{label}",
                     indexLabel: "{label} ({y})",
-                    yValueFormatString: "#,##0.#" % "",
-                    dataPoints: dataPoints  // propiedad tomara los datos del arreglo
+                    yValueFormatString: "#,##0.#",
+                    dataPoints: dataPoints
                 }]
             };
             $("#Grafico").CanvasJSChart(options);
-
+            console.log("Data points:", dataPoints); // Verificar los data points antes de mostrar el gráfico
         }
-
-        console.log("Data points:", dataPoints); // Verificar los data points antes de mostrar el gráfico
-
-
-
-
-        // $("#Grafico").CanvasJSChart(options);
-        //lo cambié arriba dentro del if, else.
-
     }
+
+
+
 
 
 
