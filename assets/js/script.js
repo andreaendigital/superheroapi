@@ -129,7 +129,8 @@ $(document).ready(function () {
         // let regex = /^(?:[1-9]|[1-9]\d|72\d|[1-6]\d{2}|7[0-2]\d|73[0-2]|732)$/;     //sugerida por chat gpt
 
 
-        if (regex.test(id)) {
+        // if (regex.test(id)) {
+        if (!isNaN(id) && id >= 1 && id <= 732) {
             // URL base
             const baseUrl = "https://www.superheroapi.com/api.php/10161210046726760/";
 
